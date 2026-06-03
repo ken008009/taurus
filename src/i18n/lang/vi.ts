@@ -104,7 +104,25 @@ export default {
     statusAvailable: 'Có thể đăng ký',
     statusFull: 'Đã bán hết',
     statusComing: 'Sắp ra mắt',
-    subscribeNow: 'Đăng ký ngay'
+    subscribeNow: 'Đăng ký ngay',
+    subscribeSuccess: 'Đăng ký thành công',
+    subscribeFailed: 'Đăng ký thất bại',
+    orderList: 'Lịch sử đăng ký',
+    amount: 'Số tiền',
+    status: 'Trạng thái',
+    time: 'Thời gian',
+    statusEarning: 'Đang kiếm lời',
+    statusCompleted: 'Hoàn thành',
+    statusPending: 'Đang chờ'
+  },
+  recharge: {
+    recharge: 'Nạp tiền',
+    rechargeRecord: 'Lịch sử nạp tiền',
+    currentBalance: 'Số dư hiện tại',
+    enterAmount: 'Vui lòng nhập số lượng',
+    minRechargeAmount: 'Số tiền nạp tối thiểu',
+    date: 'Ngày',
+    amount: 'Số tiền'
   },
   tab: {
     home: 'Trang chủ',

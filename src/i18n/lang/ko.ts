@@ -104,7 +104,25 @@ export default {
     statusAvailable: '인수 가능',
     statusFull: '매진',
     statusComing: '곧 공개',
-    subscribeNow: '지금 인수'
+    subscribeNow: '지금 인수',
+    subscribeSuccess: '인수 성공',
+    subscribeFailed: '인수 실패',
+    orderList: '인수 기록',
+    amount: '금액',
+    status: '상태',
+    time: '시간',
+    statusEarning: '수익 중',
+    statusCompleted: '완료',
+    statusPending: '대기 중'
+  },
+  recharge: {
+    recharge: '충전',
+    rechargeRecord: '충전 기록',
+    currentBalance: '현재 잔액',
+    enterAmount: '금액을 입력하세요',
+    minRechargeAmount: '최소 충전 금액',
+    date: '날짜',
+    amount: '금액'
   },
   tab: {
     home: '홈',

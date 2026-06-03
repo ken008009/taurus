@@ -104,7 +104,25 @@ export default {
     statusAvailable: '認購可能',
     statusFull: '売り切れ',
     statusComing: '間もなく公開',
-    subscribeNow: '今すぐ認購'
+    subscribeNow: '今すぐ認購',
+    subscribeSuccess: '認購成功',
+    subscribeFailed: '認購失敗',
+    orderList: '認購記録',
+    amount: '金額',
+    status: 'ステータス',
+    time: '時間',
+    statusEarning: '収益中',
+    statusCompleted: '完了',
+    statusPending: '保留中'
+  },
+  recharge: {
+    recharge: 'チャージ',
+    rechargeRecord: 'チャージ記録',
+    currentBalance: '現在の残高',
+    enterAmount: '金額を入力してください',
+    minRechargeAmount: '最低チャージ金額',
+    date: '日付',
+    amount: '金額'
   },
   tab: {
     home: 'ホーム',

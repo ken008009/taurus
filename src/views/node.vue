@@ -14,52 +14,81 @@
           :key="tier.price"
           class="tier-card"
           :class="{ active: selectedTier === tier.price }"
-          @click="selectTier(tier.price)"
         >
           <div class="tier-header">
             <div class="tier-price">{{ tier.price }}</div>
             <div class="tier-unit">USDT</div>
           </div>
-          <div class="tier-divider"></div>
-          <div class="tier-info">
-            <div class="info-label">{{ $t('node.subscribed') }}</div>
-            <div class="info-value">{{ tier.subscribed }}</div>
-          </div>
-          <div class="tier-status" :class="tier.status">
-            {{ getStatusText(tier.status) }}
-          </div>
+          <button class="subscribe-btn" @click="handleSubscribe(tier.price)">
+            {{ $t('node.subscribeNow') }}
+          </button>
         </div>
       </div>
 
-      <div class="action-section">
-        <button class="subscribe-btn" :disabled="!selectedTier" @click="handleSubscribe">
-          {{ $t('node.subscribeNow') }}
-        </button>
+      <div class="record-section">
+        <div class="section-title-wrap">
+          <div class="title-bar"></div>
+          <h3 class="section-title">{{ $t('node.orderList') }}</h3>
+        </div>
+
+        <div class="table-card">
+          <div class="table-header">
+            <span>{{ $t('node.amount') }}</span>
+            <span>{{ $t('node.status') }}</span>
+            <span>{{ $t('node.time') }}</span>
+          </div>
+          <div class="order-list" v-for="(item, index) in orderList" :key="index">
+            <div class="table-row">
+              <span>{{ item.amount }}</span>
+              <span>{{ getStatusText(item.status) }}</span>
+              <span>{{ item.createdAt }}</span>
+            </div>
+          </div>
+          <div class="empty-state" v-if="orderList.length === 0">
+            <p>{{ $t('common.noData') }}</p>
+          </div>
+          <div class="pagination-wrapper" v-if="orderList.length > 0">
+            <Pagination
+              v-model="allPage"
+              :page-count="allPageCount"
+              mode="simple"
+              @change="getOrderList"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Header from '@/components/Header.vue'
+import request from '@/tools/request'
+import { showSuccessToast, showFailToast } from 'vant'
+import { Pagination } from 'vant'
+import userPerson from '@/pinia/person'
+import lang from '@/i18n/index'
 
 const { t: $t } = useI18n()
+const person = userPerson()
+const sign = $computed(() => person.sign)
 
 interface NodeTier {
   price: number
   subscribed: number
-  status: 'available' | 'full' | 'coming'
 }
 
 const selectedTier = ref<number | null>(null)
+const orderList = ref<any[]>([])
+const allPage = ref(1)
+const allPageCount = ref(1)
 
 const nodeTiers: NodeTier[] = [
-  { price: 200, subscribed: 10, status: 'available' },
-  { price: 500, subscribed: 0, status: 'coming' },
-  { price: 1000, subscribed: 50, status: 'available' },
-  { price: 3000, subscribed: 50, status: 'available' }
+  { price: 500, subscribed: 0 },
+  { price: 1000, subscribed: 50},
+  { price: 3000, subscribed: 50}
 ]
 
 const selectTier = (price: number) => {
@@ -67,20 +96,45 @@ const selectTier = (price: number) => {
   selectedTier.value = price
 }
 
-const getStatusText = (status: NodeTier['status']) => {
-  const statusMap: Record<NodeTier['status'], string> = {
-    available: $t('node.statusAvailable'),
-    full: $t('node.statusFull'),
-    coming: $t('node.statusComing')
-  }
-  return statusMap[status]
+const getOrderList = async (page: number = 1) => {
+  await request.get("app_server/order_list", {
+    params: {
+      page
+    }
+  }).then((res: any) => {
+    allPageCount.value = Math.ceil(res.count / 10);
+    orderList.value = res.list
+  })
 }
 
-const handleSubscribe = () => {
-  if (!selectedTier.value) return
-  // TODO: 实现认购逻辑
-  console.log('认购档位:', selectedTier.value)
+const getStatusText = (status: string) => {
+  if (status === '1') return $t('node.statusEarning')
+  if (status === '2') return $t('node.statusCompleted')
+  return $t('node.statusPending')
 }
+
+const handleSubscribe = async (amount: number) => {
+  if (amount === 500) return // 500档位未开放
+  
+  await request.post("app_server/buy", {
+    amount: amount,
+    sign: sign
+  }).then((res) => {
+    const status = String(res.status)
+    if (status === 'ok' || status === 'OK' || status === '200') {
+      showSuccessToast($t('node.subscribeSuccess'))
+      getOrderList(allPage.value) // 刷新订单列表
+    } else {
+      showFailToast(status)
+    }
+  }).catch((error) => {
+    showFailToast($t('node.subscribeFailed'))
+  })
+}
+
+onMounted(() => {
+  getOrderList()
+})
 </script>
 
 <style lang="scss" scoped>
@@ -92,30 +146,24 @@ const handleSubscribe = () => {
 }
 
 .content {
-  padding: 100px 20px 40px;
+  padding: 90px 20px 40px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .page-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
 
   .page-title {
-    font-size: 32px;
+    font-size: 16px;
     font-weight: bold;
     color: #fff;
-    margin-bottom: 12px;
-    background: linear-gradient(135deg, rgba(236, 208, 165, 0.8) 0%, #FFFFFF 50%, rgba(236, 208, 165, 0.8) 100%);
-    background-size: 200% 100%;
-    animation: gradient-move 5s linear infinite;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    margin-bottom: 8px;
   }
 
   .page-subtitle {
-    font-size: 16px;
+    font-size: 12px;
     color: rgba(255, 255, 255, 0.6);
   }
 }
@@ -123,19 +171,118 @@ const handleSubscribe = () => {
 .node-tiers {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  gap: 16px;
   margin-bottom: 40px;
+}
+
+.record-section {
+  margin-top: 20px;
+
+  .section-title-wrap {
+    position: relative;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+
+    .title-bar {
+      position: absolute;
+      left: -10px;
+      top: 50%;
+      width: 4px;
+      height: 16px;
+      border-radius: 2px;
+      background: linear-gradient(180deg, #D4AF37 0%, #B8941F 100%);
+      transform: translateY(-50%);
+    }
+
+    .section-title {
+      margin: 0 0 0 8px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+    }
+  }
+}
+
+.table-card {
+  margin-top: 10px;
+  min-height: 300px;
+  overflow: hidden;
+  border: 1px solid $border-color;
+  border-radius: 11px;
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 11px 0;
+
+  .table-header {
+    display: flex;
+    align-items: center;
+    background: #0A0A0A;
+    padding: 8px 0;
+    margin: -11px 0 0;
+
+    span {
+      flex: 1;
+      text-align: center;
+      font-size: 10px;
+      color: $text-muted;
+    }
+  }
+
+  .order-list {
+    .table-row {
+      display: flex;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid $border-light;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      span {
+        flex: 1;
+        text-align: center;
+        font-size: 14px;
+        color: $text-primary;
+      }
+    }
+  }
+
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+
+    p {
+      margin-top: 8px;
+      font-size: 12px;
+      color: $text-muted;
+    }
+  }
+
+  .pagination-wrapper {
+    padding: 16px 0;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .tier-card {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
-  padding: 32px 24px 0;
+  padding: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 
   &:hover {
     background: rgba(255, 255, 255, 0.08);
@@ -152,19 +299,44 @@ const handleSubscribe = () => {
   .tier-header {
     display: flex;
     align-items: baseline;
-    gap: 8px;
-    margin-bottom: 16px;
-
+    gap: 6px;
+    
     .tier-price {
-      font-size: 28px;
-      font-weight: bold;
+      font-size: 22px;
+      font-weight: 500;
       color: $brand-gold;
       line-height: 1;
     }
 
     .tier-unit {
-      font-size: 16px;
+      font-size: 14px;
       color: rgba(255, 255, 255, 0.6);
+    }
+  }
+
+  .subscribe-btn {
+    padding: 8px 20px;
+    background: $gradient-gold;
+    color: $text-inverse;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+
+    &:hover:not(:disabled) {
+      background: linear-gradient(135deg, $brand-gold-light 0%, $brand-gold 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.5);
     }
   }
 
@@ -187,7 +359,7 @@ const handleSubscribe = () => {
 
     .info-value {
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 500;
       color: #fff;
     }
   }

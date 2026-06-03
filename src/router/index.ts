@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, Component } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import Index from "@/views/index.vue";
 import IdoDetails from '@/views/ido/details.vue'
 import Profile from '@/views/profile/index.vue'
@@ -20,7 +20,8 @@ import Wallet from "@/views/subpage/wallet.vue";
 import Community from '@/views/community.vue'
 import Level from '@/views/subpage/level.vue'
 import Withdraw from '@/views/subpage/withdraw.vue'
-import Recharge from '@/views/subpage/recharge.vue'
+// import Recharge from '@/views/subpage/recharge.vue'
+import Recharge from '@/views/recharge.vue'
 import Transfer from '@/views/subpage/transfer.vue'
 import PowerOrder from '@/views/subpage/powerOrder.vue'
 import Pledge from '@/views/pledge.vue'

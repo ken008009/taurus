@@ -168,6 +168,7 @@ const handleExternalLink = () => {
   position: relative;
   overflow-x: hidden;
   padding-top: 64px;
+  background-color: #000;
 
   &::before {
     content: '';

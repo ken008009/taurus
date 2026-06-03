@@ -104,7 +104,25 @@ export default {
     statusAvailable: '可認購',
     statusFull: '已售罄',
     statusComing: '即將開放',
-    subscribeNow: '立即認購'
+    subscribeNow: '立即認購',
+    subscribeSuccess: '認購成功',
+    subscribeFailed: '認購失敗',
+    orderList: '認購記錄',
+    amount: '金額',
+    status: '狀態',
+    time: '時間',
+    statusEarning: '收益中',
+    statusCompleted: '已完成',
+    statusPending: '待處理'
+  },
+  recharge: {
+    recharge: '充值',
+    rechargeRecord: '充值記錄',
+    currentBalance: '當前餘額',
+    enterAmount: '請輸入數量',
+    minRechargeAmount: '最低充值金額',
+    date: '日期',
+    amount: '金額'
   },
   tab: {
     home: '首頁',

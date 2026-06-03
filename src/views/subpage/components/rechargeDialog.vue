@@ -3,9 +3,9 @@
     <div class='withdraw-dialog'>
       <div class="dialog-main">
         <div class="dialog-title">{{ lang('当前余额') }}：{{ usdtBalance }}</div>
-        <a-input-number style="width: 100%" v-model:value="amount" :min="5" size="large" :placeholder="lang('请输入数量')" />
+        <a-input-number style="width: 100%" v-model:value="amount" :min="10" size="large" :placeholder="lang('请输入数量')" />
         <div class="dialog-info">
-        <p><QuestionCircleOutlined style="margin-right: 5px" />{{ lang('最低充值金额') }}: 5</p>
+        <p><QuestionCircleOutlined style="margin-right: 5px" />{{ lang('最低充值金额') }}: 10</p>
         <p></p>
         </div>
       </div>
@@ -108,33 +108,52 @@ defineExpose({
   open
 })
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
+@use '@/style/variables.scss' as *;
+
 .withdraw-dialog {
   display: flex;
   flex-direction: column;
   align-items: center;
+  
   .dialog-title {
     width: 100%;
     font-size: 14px;
-    font-weight: 500;;
+    font-weight: 500;
+    color: $text-primary;
   }
+  
   .dialog-main {
     width: 100%;
     margin: 20px 0;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    
     .dialog-info {
       display: flex;
       justify-content: space-between;
     }
+    
     p {
       text-align: right;
-      color: #999;
+      color: $text-muted;
     }
   }
+  
   .withdraw-btn {
     width: 160px;
+    background: $gradient-gold;
+    border: none;
+    color: $text-inverse;
+    
+    &:hover:not(:disabled) {
+      background: linear-gradient(135deg, $brand-gold-light 0%, $brand-gold 100%);
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+    }
   }
 }
 </style>

@@ -104,7 +104,25 @@ export default {
     statusAvailable: 'Available',
     statusFull: 'Sold Out',
     statusComing: 'Coming Soon',
-    subscribeNow: 'Subscribe Now'
+    subscribeNow: 'Subscribe Now',
+    subscribeSuccess: 'Subscription Successful',
+    subscribeFailed: 'Subscription Failed',
+    orderList: 'Subscription Records',
+    amount: 'Amount',
+    status: 'Status',
+    time: 'Time',
+    statusEarning: 'Earning',
+    statusCompleted: 'Completed',
+    statusPending: 'Pending'
+  },
+  recharge: {
+    recharge: 'Recharge',
+    rechargeRecord: 'Recharge Record',
+    currentBalance: 'Current Balance',
+    enterAmount: 'Enter Amount',
+    minRechargeAmount: 'Minimum Recharge Amount',
+    date: 'Date',
+    amount: 'Amount'
   },
   tab: {
     home: 'Home',

@@ -4,8 +4,7 @@
   "version": "0.0.0",
   "type": "commonjs",
   "scripts": {
-    "dev:test": "vite --mode test",
-    "dev:prod": "vite --mode prod",
+    "dev": "vite --mode prod",
     "bundle": "node ./tools/bundle.js \"${npm_config_demoVersion}\" ",
     "build": "run-p type-check \"build-only {@}\" --",
     "build:dev": "run-p type-check \"build-only:dev {@}\" --",
