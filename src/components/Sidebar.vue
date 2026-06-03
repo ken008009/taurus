@@ -7,7 +7,7 @@
 
         <!-- Logo -->
         <div class="sidebar-logo">
-          <img src="/asstes/logo.png" alt="Logo" class="logo-img" />
+          <img src="/assets/logo.png" alt="Logo" class="logo-img" />
         </div>
 
         <!-- 用户地址（点击地址复制当前链接跟地址 -->
@@ -17,14 +17,32 @@
 
         <!-- 菜单项 -->
         <nav class="sidebar-nav">
-          <div
-            v-for="item in menuItems"
-            :key="item.path"
-            class="nav-item"
-            :class="{ active: isActive(item.path) }"
-            @click="handleNavClick(item)"
-          >
-            {{ $t(item.name) }}
+          <div class="nav-item" :class="{ active: isActive('/') }" @click="router.push('/')">
+            {{ $t('tab.home') }}
+          </div>
+          <div class="nav-item" :class="{ active: isActive('/node') }" @click="router.push('/node')">
+            {{ $t('tab.nodeSubscription') }}
+          </div>
+          <div class="nav-item" :class="{ active: isActive('/pledge') }" @click="router.push('/pledge')">
+            {{ $t('tab.pledgeMining') }}
+          </div>
+          <div class="nav-item" :class="{ active: isActive('/community') }" @click="router.push('/community')">
+            {{ $t('tab.myTeam') }}
+          </div>
+          <div class="nav-item" :class="{ active: isActive('/mine') }" @click="router.push('/mine')">
+            {{ $t('tab.myAssets') }}
+          </div>
+          <div class="nav-item" @click="window.open('https://www.ispaychain.com/?code=0x0b57d116D292dBF4FFd9C979606D9D9EAea0e0a2', '_blank')">
+            {{ $t('tab.internationalPayment') }}
+          </div>
+          <div class="nav-item" @click="handleDownload">
+            {{ $t('tab.chainGames') }}
+          </div>
+          <div class="nav-item" @click="handleDownload">
+            {{ $t('tab.chainMall') }}
+          </div>
+          <div class="nav-item disabled" @click="showModal = true; modalMessage = $t('common.comingSoon')">
+            {{ $t('tab.taurusChain') }}
           </div>
         </nav>
 
@@ -41,69 +59,40 @@
   </Teleport>
 </template>
 
-<script setup lang="ts">
-import { computed, ref } from 'vue'
+<script setup>
+import { ref, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import userPerson from '@/pinia/person'
 import Modal from '@/components/Modal.vue'
 
-const { t: $t } = useI18n()
-
-interface MenuItem {
-  path: string
-  name: string
-  external?: boolean
-  externalUrl?: string
-  disabled?: boolean
-  disabledMessage?: string
-  disabledMessageKey?: string
-  noAction?: boolean
-  downloadUrl?: string
-}
-
-const props = defineProps<{
-  visible: boolean
-}>()
-
-const emit = defineEmits<{
-  close: []
-  languageClick: []
-}>()
-
 const router = useRouter()
 const route = useRoute()
 const person = userPerson()
+const { t: $t } = useI18n()
+
+const props = defineProps({
+  visible: Boolean
+})
+
+const emit = defineEmits(['close', 'languageClick'])
 
 const showModal = ref(false)
 const modalMessage = ref('')
 
-const menuItems: MenuItem[] = [
-  { path: '/index', name: 'tab.home' },
-  { path: '/node', name: 'tab.nodeSubscription' },
-  { path: '/pledge', name: 'tab.pledgeMining' },
-  { path: '/community', name: 'tab.myTeam' },
-  { path: '/mine', name: 'tab.myAssets' },
-  { path: '/international-payment', name: 'tab.internationalPayment', external: true, externalUrl: 'https://www.ispaychain.com/?code=0x0b57d116D292dBF4FFd9C979606D9D9EAea0e0a2' },
-  { path: '/chain-games', name: 'tab.chainGames', downloadUrl: '/base.apk' },
-  { path: '/chain-mall', name: 'tab.chainMall', downloadUrl: '/base.apk' },
-  { path: '/taurus-chain', name: 'tab.taurusChain', disabled: true }
-]
-
 const address = computed(() => person.address)
 
-const formatAddress = (value: string) => {
+const formatAddress = (value) => {
   const frontSix = value.slice(0, 6)
   const backSix = value.slice(-6)
-  const middle = '...'
-  return frontSix + middle + backSix
+  return frontSix + '...' + backSix
 }
 
 const userAddress = computed(() => {
   return formatAddress(address.value || '0x0000000000000000000000000000000000000000')
 })
 
-const isActive = (path: string) => {
+const isActive = (path) => {
   return route.path === path
 }
 
@@ -115,42 +104,21 @@ const handleOverlayClick = () => {
   close()
 }
 
-const handleNavClick = (item: MenuItem) => {
-  if (item.noAction) {
-    return
-  }
-  if (item.downloadUrl) {
-    const link = document.createElement('a')
-    link.href = item.downloadUrl
-    link.download = 'base.apk'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-    close()
-    return
-  }
-  if (item.disabled) {
-    modalMessage.value = item.disabledMessageKey ? $t(item.disabledMessageKey) : (item.disabledMessage || $t('common.comingSoon'))
-    showModal.value = true
-    return
-  }
-  if (item.external && item.externalUrl) {
-    window.open(item.externalUrl, '_blank')
-  } else {
-    if (route.path !== item.path) {
-      router.push(item.path)
-    }
-  }
+const handleDownload = () => {
+  const link = document.createElement('a')
+  link.href = '/base.apk'
+  link.download = 'base.apk'
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
   close()
 }
 
 const handleCopyAddress = async () => {
   const currentUrl = window.location.href
   const copyText = `${currentUrl}?ref=${userAddress.value}`
-
   try {
     await navigator.clipboard.writeText(copyText)
-    // 可以添加复制成功的提示
     console.log('复制成功:', copyText)
   } catch (err) {
     console.error('复制失败:', err)
@@ -256,11 +224,9 @@ const handleCopyAddress = async () => {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  width: 300px;
 }
 
 .nav-item {
-  width: 100%;
   padding: 12px 32px;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 32px;

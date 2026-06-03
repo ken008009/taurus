@@ -6,7 +6,7 @@
         <div class="card-bg"></div>
         <div class="card-content">
           <div class="card-header">
-            <img src="/assets/homeLogo.webp" alt="FDA" class="card-logo" />
+            <img src="/assets/logo.png" alt="logo" class="card-logo" />
             <h2 class="card-title">{{ $t('mine.tokenAirdrop') }}</h2>
           </div>
 

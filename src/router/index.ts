@@ -8,7 +8,7 @@ import Withdrawal from '@/views/withdrawal/index.vue'
 import Home from '@/views/home/index.vue'
 // import Recharge from '@/views/recharge/index.vue'
 import Trade from '@/views/trade/index.vue'
-import Node from '@/views/node/index.vue'
+import Node from '@/views/node.vue'
 import Contact from '@/views/contact/index.vue'
 import Address from '@/views/index/address.vue'
 import Shop from '@/views/subpage/shop.vue'
@@ -17,12 +17,14 @@ import PowerShop from '@/views/subpage/powerShop.vue'
 import Web3Shop from '@/views/subpage/web3Shop.vue'
 import Stat from '@/views/subpage/stat.vue'
 import Wallet from "@/views/subpage/wallet.vue";
-import Community from '@/views/subpage/community.vue'
+import Community from '@/views/community.vue'
 import Level from '@/views/subpage/level.vue'
 import Withdraw from '@/views/subpage/withdraw.vue'
 import Recharge from '@/views/subpage/recharge.vue'
 import Transfer from '@/views/subpage/transfer.vue'
 import PowerOrder from '@/views/subpage/powerOrder.vue'
+import Pledge from '@/views/pledge.vue'
+import Mine from '@/views/mine.vue'
 
 // 定义路由
 const routes = [
@@ -38,6 +40,9 @@ const routes = [
     { path: '/trade', component: Trade},
     { path: '/transfer', component: Transfer},
     { path: '/node', component: Node},
+    { path: '/pledge', component: Pledge},
+    { path: '/community', component: Community},
+    { path: '/mine', component: Mine},
     { path: '/contact', component: Contact},
     { path: '/address', component: Address},
     { path: '/shop', component: Shop},
@@ -47,7 +52,6 @@ const routes = [
     { path: '/powerShop', component: PowerShop},
     { path: '/stat', component: Stat},
     { path: '/wallet', component: Wallet},
-    { path: '/community', component: Community},
     { path: '/level', component: Level},
     { path: '/powerOrder', component: PowerOrder}
 ];
