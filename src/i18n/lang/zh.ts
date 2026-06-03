@@ -55,6 +55,8 @@ export default {
   },
   community: {
     level: '等级:',
+    superiorAddress: '上级邀请地址',
+    myInviteLink: '我的邀请链接',
     evangelists: '布道人数',
     activeUsers: '有效用户',
     communitySize: '社区人数',
@@ -67,7 +69,13 @@ export default {
     walletAddress: '钱包地址',
     userLevel: '用户等级',
     personalPerformance: '个人业绩',
-    teamPerformance: '团队业绩'
+    teamPerformance: '团队业绩',
+    directReferralIncome: '直推收益',
+    rewardRecord: '奖励记录',
+    amount: '数量',
+    generation: '代数',
+    reward: '奖励',
+    time: '时间'
   },
   mine: {
     tokenAirdrop: '代币空投',

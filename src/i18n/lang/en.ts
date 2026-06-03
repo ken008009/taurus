@@ -55,6 +55,8 @@ export default {
   },
   community: {
     level: 'Level:',
+    superiorAddress: 'Superior Address',
+    myInviteLink: 'My Invite Link',
     evangelists: 'Evangelists',
     activeUsers: 'Active Users',
     communitySize: 'Community Size',
@@ -67,7 +69,13 @@ export default {
     walletAddress: 'Wallet Address',
     userLevel: 'User Level',
     personalPerformance: 'Personal Performance',
-    teamPerformance: 'Team Performance'
+    teamPerformance: 'Team Performance',
+    directReferralIncome: 'Direct Referral Income',
+    rewardRecord: 'Reward Record',
+    amount: 'Amount',
+    generation: 'Generation',
+    reward: 'Reward',
+    time: 'Time'
   },
   mine: {
     tokenAirdrop: 'Token Airdrop',

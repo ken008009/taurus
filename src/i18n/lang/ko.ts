@@ -55,6 +55,8 @@ export default {
   },
   community: {
     level: '등급:',
+    superiorAddress: '상위 초대 주소',
+    myInviteLink: '내 초대 링크',
     evangelists: '포교 인원',
     activeUsers: '유효 사용자',
     communitySize: '커뮤니티 인원',
@@ -67,7 +69,13 @@ export default {
     walletAddress: '지갑 주소',
     userLevel: '사용자 등급',
     personalPerformance: '개인 실적',
-    teamPerformance: '팀 실적'
+    teamPerformance: '팀 실적',
+    directReferralIncome: '직추 수익',
+    rewardRecord: '보상 기록',
+    amount: '수량',
+    generation: '세대',
+    reward: '보상',
+    time: '시간'
   },
   mine: {
     tokenAirdrop: '토큰 에어드롭',

@@ -3,13 +3,19 @@
     <Header />
     <div class="container">
       <div class="info-card">
-        <div class="user-row">
-          <span class="address-tag">0x2e24...c33e</span>
-          <span>{{ $t('community.level') }}</span>
-          <span class="level-text">F0</span>
+        <div class="info-box">
+          <div class="info-title">{{ $t('community.superiorAddress') }}</div>
+          <div class="info-address">{{ formatAddress(userinfo.inviteUserAddress) }}</div>
+        </div>
+        <div class="info-box">
+          <div class="info-title">{{ $t('community.myInviteLink') }}</div>
+          <div class="info-link">
+            <span>{{ inviteUrl }}</span>
+            <i class="copy-button" @click="copyToClipboard(inviteUrl)"></i>
+          </div>
         </div>
 
-        <div class="stats-grid">
+        <!-- <div class="stats-grid">
           <div class="stats-item">
             <span class="stats-num">0</span>
             <span class="stats-label">{{ $t('community.evangelists') }}</span>
@@ -42,19 +48,35 @@
             <span class="stats-num">0</span>
             <span class="stats-label">{{ $t('community.teamRedeemed') }}</span>
           </div>
-        </div>
+        </div> -->
       </div>
 
-      <h3 class="list-title">{{ $t('community.evangelistList') }}</h3>
+      <h3 class="list-title">{{ $t('community.rewardRecord') }}</h3>
 
       <div class="table-card">
         <div class="table-header">
-          <span>{{ $t('community.walletAddress') }}</span>
-          <span>{{ $t('community.userLevel') }}</span>
-          <span>{{ $t('community.personalPerformance') }}</span>
-          <span>{{ $t('community.teamPerformance') }}</span>
+          <span>{{ $t('community.amount') }}</span>
+          <span>{{ $t('community.generation') }}</span>
+          <span>{{ $t('community.reward') }}</span>
+          <span>{{ $t('community.time') }}</span>
         </div>
-        <div class="empty-state">
+        <div class="income-list" v-if="rewardList.length > 0">
+          <div class="income-list-item" v-for="(item, index) in rewardList" :key="index">
+            <div class="income-list-item-info">
+              <p>USDT {{ $t('community.amount') }}：{{ item.amount }}</p>
+              <p v-if="item.num">{{ $t('community.generation') }}：{{ item.num }}</p>
+              <p>{{ item.createdAt }}</p>
+            </div>
+            <div class="income-list-item-money">{{ item.reward }}</div>
+          </div>
+          <Pagination
+            v-model="page"
+            :page-count="allPageCount"
+            mode="simple"
+            @change="getRewardList"
+          />
+        </div>
+        <div class="empty-state" v-else>
           <p>{{ $t('common.noData') }}</p>
         </div>
       </div>
@@ -66,6 +88,52 @@
 
 <script setup lang="ts">
 import Header from '@/components/Header.vue'
+import userPerson from '@/pinia/person'
+import { computed, onMounted } from 'vue'
+import { showToast } from 'vant'
+import copy from 'copy-to-clipboard'
+import request from '@/tools/request'
+import { Pagination } from 'vant'
+
+const person = userPerson()
+const userinfo = computed(() => person.userinfo)
+const address = computed(() => person.address)
+
+const inviteUrl = computed(() => `https://${window.location.host}/#/?inviteCode=-inviteTdh-${person.address}-inviteTdh-`)
+
+let rewardList = $ref<any[]>([])
+let page = $ref(1)
+let allPageCount = $ref(1)
+let active = $ref('3') // 默认使用 reqType=3 (直推收益)
+
+const formatAddress = (value: string) => {
+  if (!value) return ''
+  const frontSix = value.slice(0, 6)
+  const backSix = value.slice(-4)
+  const middle = '...'
+  return frontSix + middle + backSix
+}
+
+const copyToClipboard = (text: string) => {
+  copy(text)
+  showToast('内容已复制到剪贴板')
+}
+
+const getRewardList = async (pageNum: number = 1) => {
+  const res: any = await request.get("app_server/reward_list", {
+    params: {
+      page: pageNum,
+      reqType: active
+    }
+  })
+
+  allPageCount = Math.ceil(res.count / 10)
+  rewardList = res.list
+}
+
+onMounted(() => {
+  getRewardList()
+})
 </script>
 
 <style lang="scss" scoped>
@@ -82,31 +150,57 @@ import Header from '@/components/Header.vue'
 
 .info-card {
   margin-top: 25px;
-  padding: 12px 15px 35px;
-  background: rgba(20, 20, 20, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid $border-color;
-  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
 }
 
-.user-row {
+.info-box {
+  width: 100%;
+  min-height: 93px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 15px 15px 20px 15px;
+  box-sizing: border-box;
   display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  color: #fff;
+  flex-direction: column;
+  gap: 10px;
 
-  .address-tag {
-    padding: 4px 8px;
-    background: rgba(212, 175, 55, 0.1);
-    border-radius: 8px;
-    font-size: 10px;
+  .info-title {
+    color: $brand-gold;
+    font-size: 16px;
   }
 
-  .level-text {
-    font-size: 13px;
-    color: $brand-gold;
-    font-weight: bold;
+  .info-address {
+    word-break: break-all;
+    color: $text-primary;
+    font-size: 14px;
+  }
+
+  .info-link {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+    span {
+      word-break: break-all;
+      color: $text-primary;
+      font-size: 14px;
+    }
+
+    .copy-button {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAC6UlEQVR4AexXTWgTQRR+M7tbYpvQWlLw0EMOCh4VLJpGIUcPHhSTEEWQoIWIesjfPVdr2ngpVSz0UolNCz2IUPBgwGztQdCD4MGD3lQaMNJAI4k7vllYTLK7ye5mBQ8O82bn571vvryZeTOh0Ce9zIfF9UIoWV4IfUBhDmVvoxBaLs/PHDGaypQAn3zP194iBJbR8DiK0+xnBJIgjLzeLAR1OKYEvo217gCwC05nNbALKCC8WLt3erpzzJQAJXC9U9GVOmHTI4JQ7MQyJRDLyidjGZk4FQUgSABWOidT64RESouhU2odC1MCODZUjmfk3WhGniMUrvUCiQA3tD6VQHkp7F1fCD3GXX6A4nS3a3b75cLshrbW0ZT8BD2xpk3Iv4yx8/zLha7mwx742XqGSjexw4MybPYCunlEFF9pJH4BLHWDkgA/ZbyPHhprJYFBGNxPAUmQ7nPYg0npHf7ANq9rUh8HL69TSv+sB+9wUwhhEe7hRKLSBCANMEh8D6hMDMbc6BInxqHvsnICbkzkGOM/ASMPbLeZNGU3AoJH8hEGD+2uhY6AorDc1WylZhcodrvS8Deku2iHOx5Li5n26lEGGCl7e621P4N9W6qDFkmxvBg8ulUMT9gR/uAY9bZXEa/vscPxrqwnwKMiox9bSuu7HcEHxxcMPPEudAsNPQELRm6q/JsE+MVBCKnbEoCuy8aql4w8sC1SaSqarh62I41JyUcAHoDNpCNAmZK6lKrUbeJAAm88/76UQ7vh4gBQ6vh2dCUOKAyK5fnZE3ZiANctFc8ERn3tEnrAShz4qnlZtwQIcBYE8tZODOC6giJ8IsAuov2g3BQo488/Vc+IgDrgfsFq+FbcxP8b5y6ndp5r+NiGmtb4G9/6D1A3JT7Rj8XS1WgkLb/pnIfig/RRZ4fL9d1Enr8HzVFpNCuvEEaemqs4Hmng1T43yFrdA9Fs9QpjcAuV8SRhOVxu8rVuM2Umntt5PwjqNwAAAP//ec0etAAAAAZJREFUAwA1x8ykU4MciwAAAABJRU5ErkJggg==') no-repeat;
+      background-size: 20px 20px;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
   }
 }
 
@@ -176,6 +270,49 @@ import Header from '@/components/Header.vue'
       text-align: center;
       font-size: 10px;
       color: $text-muted;
+    }
+  }
+
+  .income-list {
+    padding: 10px;
+
+    .income-list-item {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px;
+      border-bottom: 1px solid $border-light;
+      display: flex;
+      align-items: center;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .income-list-item-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        p {
+          color: $text-muted;
+          font-size: 12px;
+
+          &:last-child {
+            color: $text-muted;
+            font-size: 10px;
+          }
+        }
+      }
+
+      .income-list-item-money {
+        flex-shrink: 0;
+        width: 80px;
+        text-align: right;
+        color: $brand-gold;
+        font-size: 14px;
+        font-weight: 500;
+      }
     }
   }
 

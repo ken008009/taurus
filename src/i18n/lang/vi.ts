@@ -55,6 +55,8 @@ export default {
   },
   community: {
     level: 'Cấp độ:',
+    superiorAddress: 'Địa chỉ mời cấp trên',
+    myInviteLink: 'Liên kết mời của tôi',
     evangelists: 'Số người truyền giáo',
     activeUsers: 'Người dùng hiệu lực',
     communitySize: 'Số người cộng đồng',
@@ -67,7 +69,13 @@ export default {
     walletAddress: 'Địa chỉ ví',
     userLevel: 'Cấp độ người dùng',
     personalPerformance: 'Thành tích cá nhân',
-    teamPerformance: 'Thành tích nhóm'
+    teamPerformance: 'Thành tích nhóm',
+    directReferralIncome: 'Thu nhập trực tiếp',
+    rewardRecord: 'Lịch sử thưởng',
+    amount: 'Số lượng',
+    generation: 'Thế hệ',
+    reward: 'Thưởng',
+    time: 'Thời gian'
   },
   mine: {
     tokenAirdrop: 'Airdrop token',

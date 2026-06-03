@@ -13,15 +13,15 @@
           <div class="stats-list">
             <div class="stats-row">
               <span class="stats-name">{{ $t('mine.claimableAmount') }}</span>
-              <span class="stats-value green">0 FDA</span>
+              <span class="stats-value green">0</span>
             </div>
             <div class="stats-row">
               <span class="stats-name">{{ $t('mine.pendingAmount') }}</span>
-              <span class="stats-value yellow">0 FDA</span>
+              <span class="stats-value yellow">0</span>
             </div>
             <div class="stats-row">
               <span class="stats-name">{{ $t('mine.claimedAmount') }}</span>
-              <span class="stats-value green">0 FDA</span>
+              <span class="stats-value green">0</span>
             </div>
             <div class="stats-row">
               <span class="stats-name">{{ $t('mine.totalNodes') }}</span>
@@ -29,7 +29,7 @@
             </div>
             <div class="stats-row">
               <span class="stats-name">{{ $t('mine.releaseCountdown') }}</span>
-              <span class="stats-value purple">{{ $t('mine.none') }}</span>
+              <span class="stats-value purple">--</span>
             </div>
           </div>
 

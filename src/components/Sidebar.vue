@@ -10,7 +10,6 @@
           <img src="/assets/logo.png" alt="Logo" class="logo-img" />
         </div>
 
-        <!-- 用户地址（点击地址复制当前链接跟地址 -->
         <div class="user-address" @click="handleCopyAddress">
           <div class="address-value">{{ userAddress }}</div>
         </div>
@@ -88,8 +87,8 @@ const address = computed(() => person.address)
 
 const formatAddress = (value) => {
   const frontSix = value.slice(0, 6)
-  const backSix = value.slice(-6)
-  return frontSix + '...' + backSix
+  const backFour = value.slice(-4)
+  return frontSix + '...' + backFour
 }
 
 const userAddress = computed(() => {
@@ -201,7 +200,6 @@ const handleCopyAddress = async () => {
   padding: 10px 32px;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 20px;
-  margin-bottom: 24px;
   cursor: pointer;
   transition: all 0.3s ease;
   border: 1px solid transparent;
