@@ -16,7 +16,7 @@ export default {
     welcomeDescription: 'Value Traceability Network of Digital Civilization',
     welcomeDescription2: "World's First AI Public Chain, Payment, Chain Games & Chain Mall Super App",
     projectInfoTitle1: 'I. AI & Technical Advantages',
-    totalSupply: 'Total Token Supply: 800 Million',
+    totalSupply: 'Total Token Supply: 100 Million',
     nodeOutput: 'Node Output:',
     blockInterval: 'Block Interval: 3 seconds/block',
     blocksPerDay: 'Blocks per 24h: 22300',

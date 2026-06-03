@@ -16,7 +16,7 @@ export default {
     welcomeDescription: 'Mạng lưới truy xuất giá trị của nền văn minh số',
     welcomeDescription2: 'Ứng dụng siêu cấp đầu tiên trên thế giới tích hợp AI Public Chain, Thanh toán, Trò chơi chuỗi & Mall trên chuỗi',
     projectInfoTitle1: '一、Kết hợp AI và lợi thế kỹ thuật',
-    totalSupply: 'Tổng nguồn cung token: 800 triệu',
+    totalSupply: 'Tổng nguồn cung token: 100 triệu',
     nodeOutput: 'Đầu ra Node：',
     blockInterval: 'Khoảng thời gian khối：3 seconds/block',
     blocksPerDay: 'Số khối mỗi 24h：22300',

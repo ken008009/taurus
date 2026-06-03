@@ -16,7 +16,7 @@ export default {
     welcomeDescription: '디지털 문명의 가치 추적 네트워크',
     welcomeDescription2: '세계 최초 AI 퍼블릭 체인·결제·체인 게임·체인 몰 통합 슈퍼 앱',
     projectInfoTitle1: '一、AI 인공지능과 기술 우위성 결합',
-    totalSupply: '토큰 총 발행량 8억 개',
+    totalSupply: '토큰 총 발행량 1억 개',
     nodeOutput: '노드 출력：',
     blockInterval: '블록 출력 간격：3 seconds/block',
     blocksPerDay: '24시간 블록 수：22300',

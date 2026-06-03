@@ -16,7 +16,7 @@ export default {
     welcomeDescription: 'デジタル文明の価値トレースネットワーク',
     welcomeDescription2: '世界初のAIパブリックチェーン・決済・チェーンゲーム・チェーンモール統合スーパーアプリ',
     projectInfoTitle1: '一、AI人工知能と技術優位性の融合',
-    totalSupply: 'トークン総発行量8億枚',
+    totalSupply: 'トークン総発行量1億枚',
     nodeOutput: 'ノード出力：',
     blockInterval: 'ブロック出力間隔：3 seconds/block',
     blocksPerDay: '24時間ブロック数：22300',

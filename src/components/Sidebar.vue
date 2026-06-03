@@ -20,7 +20,7 @@
             {{ $t('tab.home') }}
           </div>
           <div class="nav-item" :class="{ active: isActive('/recharge') }" @click="router.push('/recharge')">
-            充值
+            {{ $t('recharge.recharge') }}
           </div>
           <div class="nav-item" :class="{ active: isActive('/node') }" @click="router.push('/node')">
             {{ $t('tab.nodeSubscription') }}
@@ -163,6 +163,7 @@ const handleCopyAddress = async () => {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: auto;
 }
 
 .close-btn {
@@ -236,6 +237,7 @@ const handleCopyAddress = async () => {
 
 .sidebar-nav {
   width: 260px;
+  margin-bottom: 60px;
   display: flex;
   flex-direction: column;
   gap: 12px;

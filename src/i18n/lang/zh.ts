@@ -34,7 +34,7 @@ export default {
     benefit_makerDesc: '获得3%做市商利润加权分红',
     welcomeDescription2: '全球首个AI公链、支付、链游、链上商城为一体的超级应用',
     projectInfoTitle1: '一、结合AI人工智能与技术优势',
-    totalSupply: '代币总发行量8亿枚',
+    totalSupply: '代币总发行量1亿枚',
     nodeOutput: '节点输出：',
     blockInterval: '块输出间隔：3 seconds/block',
     blocksPerDay: '每24小时区块：22300',

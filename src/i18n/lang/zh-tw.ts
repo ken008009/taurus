@@ -16,7 +16,7 @@ export default {
     welcomeDescription: '數字文明的價值溯源網絡',
     welcomeDescription2: '全球首個AI公鏈、支付、鏈遊、鏈上商城為一體的超級應用',
     projectInfoTitle1: '一、結合AI人工智能與技術優勢',
-    totalSupply: '代幣總發行量8億枚',
+    totalSupply: '代幣總發行量1億枚',
     nodeOutput: '節點輸出：',
     blockInterval: '塊輸出間隔：3 seconds/block',
     blocksPerDay: '每24小時區塊：22300',
