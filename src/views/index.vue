@@ -13,12 +13,30 @@
       </div>
 
       <div class="features">
-        <div v-for="(feature, index) in features" :key="index" class="feature-item" @click="handleFeatureClick(feature)">
+        <div class="feature-item" @click="handleExternalLink">
           <div class="feature-bg">
-            <img :src="feature.bg" :alt="feature.title" class="bg-image" />
+            <img src="/static/output-icon-bg-DIHWgt3w.png" alt="internationalPayment" class="bg-image" />
             <div class="feature-content">
-              <img :src="feature.icon" :alt="feature.title" class="feature-icon" />
-              <div class="feature-title">{{ $t(feature.title) }}</div>
+              <img src="/static/output-icon.png" alt="internationalPayment" class="feature-icon" />
+              <div class="feature-title">{{ $t('tab.internationalPayment') }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="feature-item" @click="showToast($t('common.comingSoon'))">
+          <div class="feature-bg">
+            <img src="/static/module-icon-bg-weJSvE3-.png" alt="chainGame" class="bg-image" />
+            <div class="feature-content">
+              <img src="/static/module-icon.png" alt="chainGame" class="feature-icon" />
+              <div class="feature-title">{{ $t('index.featureTitles[1]') }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="feature-item" @click="showToast($t('common.comingSoon'))">
+          <div class="feature-bg">
+            <img src="/static/chart-icon-bg-yYEAC2yW.png" alt="taurusChain" class="bg-image" />
+            <div class="feature-content">
+              <img src="/static/chart-icon.png" alt="taurusChain" class="feature-icon" />
+              <div class="feature-title">{{ $t('tab.taurusChain') }}</div>
             </div>
           </div>
         </div>
@@ -31,7 +49,7 @@
           <h2 class="ido-title">{{ $t('index.idoRecruitPlan') }}</h2>
         </div>
         <!-- <div class="ido-subtitle">成为Taurus IDO，享受提现手续费分红、升级级别等功能</div> -->
-        
+
         <div class="ido-card">
           <div class="ido-card-left">
             <span class="ido-label">{{ $t('index.idoRights') }}</span>
@@ -62,11 +80,11 @@
           <div class="info-section">
             <h4 class="section-title">{{ $t('index.scenariosTitle') }}</h4>
             <div class="info-content">
-              <p class="info-item">1：{{ $t('index.chainLaunch') }}</p>
-              <p class="info-item">2：{{ $t('index.miningLaunch') }}</p>
-              <p class="info-item">3：{{ $t('index.paymentLaunch') }}</p>
-              <p class="info-item">4：{{ $t('index.gameBeta') }}</p>
-              <p class="info-item">5：{{ $t('index.mallLaunch') }}</p>
+              <p class="info-item">1. {{ $t('index.chainLaunch') }}</p>
+              <p class="info-item">2. {{ $t('index.miningLaunch') }}</p>
+              <p class="info-item">3. {{ $t('index.paymentLaunch') }}</p>
+              <p class="info-item">4. {{ $t('index.gameBeta') }}</p>
+              <p class="info-item">5. {{ $t('index.mallLaunch') }}</p>
             </div>
           </div>
 
@@ -102,62 +120,24 @@
       <h2 class="partners-title">{{ $t('index.partners') }}</h2>
       <PartnersWall />
     </div>
-
-    <Modal
-      :visible="showModal"
-      :message="modalMessage"
-      :confirm-text="$t('common.confirm')"
-      @close="showModal = false"
-      @confirm="showModal = false"
-    />
-
-    <InputModal
-      :visible="showInputModal"
-      :message="$t('common.enterInviteCode')"
-      placeholder="0x..."
-      :confirm-text="$t('common.submit')"
-      @close="showInputModal = false"
-      @confirm="handleSuperiorConfirm"
-    />
   </div>
+
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import { showToast } from 'vant'
 import Header from '@/components/Header.vue'
 import GoldWaveBackground from '@/components/GoldWaveBackground.vue'
 import StrengthSection from '@/components/StrengthSection.vue'
 import PartnersWall from '@/components/PartnersWall.vue'
-import Modal from '@/components/Modal.vue'
-import InputModal from '@/components/InputModal.vue'
 
 const router = useRouter()
 const { t: $t } = useI18n()
 
-const showModal = ref(false)
-const modalMessage = ref('')
-
-const showInputModal = ref(false)
-const superiorAddress = ref('')
-
 const handleStart = () => {
-  // 判断是否有上级（这里需要根据实际业务逻辑判断）
-  const hasSuperior = false // 假设没有上级
-
-  if (!hasSuperior) {
-    showInputModal.value = true
-  } else {
-    router.push('/pledge')
-  }
-}
-
-const handleSuperiorConfirm = (address: string) => {
-  superiorAddress.value = address
-  console.log('上级地址:', address)
-  // 这里可以保存上级地址到 store 或其他地方
-  return
   router.push('/pledge')
 }
 
@@ -165,59 +145,18 @@ const handleGoToNode = () => {
   router.push('/node')
 }
 
-const handleFeatureClick = (feature: FeatureItem) => {
-  if (feature.downloadUrl) {
-    const link = document.createElement('a')
-    link.href = feature.downloadUrl
-    link.download = 'base.apk'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-    return
-  }
-  if (feature.disabled) {
-    modalMessage.value = feature.disabledMessageKey ? $t(feature.disabledMessageKey) : (feature.disabledMessage || $t('common.comingSoon'))
-    showModal.value = true
-    return
-  }
-  if (feature.external && feature.externalUrl) {
-    window.open(feature.externalUrl, '_blank')
-  }
+const handleDownload = () => {
+  const link = document.createElement('a')
+  link.href = '/base.apk'
+  link.download = 'base.apk'
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
 }
 
-interface FeatureItem {
-  bg: string
-  icon: string
-  title: string
-  external?: boolean
-  externalUrl?: string
-  disabled?: boolean
-  disabledMessage?: string
-  disabledMessageKey?: string
-  downloadUrl?: string
+const handleExternalLink = () => {
+  window.open('https://www.ispaychain.com/?code=0x0b57d116D292dBF4FFd9C979606D9D9EAea0e0a2', '_blank')
 }
-
-const features: FeatureItem[] = [
-  {
-    bg: '/static/output-icon-bg-DIHWgt3w.png',
-    icon: '/static/output-icon.png',
-    title: 'tab.internationalPayment',
-    external: true,
-    externalUrl: 'https://www.ispaychain.com/?code=0x0b57d116D292dBF4FFd9C979606D9D9EAea0e0a2'
-  },
-  {
-    bg: '/static/module-icon-bg-weJSvE3-.png',
-    icon: '/static/module-icon.png',
-    title: 'index.featureTitles[1]',
-    downloadUrl: '/base.apk'
-  },
-  {
-    bg: '/static/chart-icon-bg-yYEAC2yW.png',
-    icon: '/static/chart-icon.png',
-    title: 'tab.taurusChain',
-    disabled: true
-  }
-]
 
 </script>
 
@@ -628,22 +567,6 @@ const features: FeatureItem[] = [
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    .progress-bar {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      width: 80px;
-      height: 32px;
-      background: url('/static/nft-referral-progress-bar.png') no-repeat center;
-      background-size: cover;
-      padding-right: 8px;
-
-      .progress-num {
-        font-size: 14px;
-        color: $text-muted;
-      }
-    }
 
     .progress-text {
       font-size: 13px;

@@ -1,25 +1,25 @@
 <template>
-  <Teleport to="body">
-    <Transition name="modal-fade">
-      <div v-if="visible" class="modal-overlay" @click="handleOverlayClick">
-        <div class="modal" @click.stop>
-          <div class="modal-header">
-            <!-- <h3 class="modal-title">{{ title }}</h3> -->
-            <button class="modal-close" @click="close">×</button>
-          </div>
-          <div class="modal-body">
-            <p class="modal-message">{{ message }}</p>
-          </div>
-          <div class="modal-footer">
-            <button class="modal-btn" @click="handleConfirm">{{ confirmText }}</button>
-          </div>
+  <Transition name="modal-fade">
+    <div v-if="visible" class="modal-overlay" @click="handleOverlayClick">
+      <div class="modal" @click.stop>
+        <div class="modal-header">
+          <!-- <h3 class="modal-title">{{ title }}</h3> -->
+          <button class="modal-close" @click="close">×</button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-message">{{ message }}</p>
+        </div>
+        <div class="modal-footer" v-if="showConfirmButton">
+          <button class="modal-btn" @click="handleConfirm">{{ confirmText }}</button>
         </div>
       </div>
-    </Transition>
-  </Teleport>
+    </div>
+  </Transition>
 </template>
 
 <script setup lang="ts">
+import { watch } from 'vue'
+
 const props = withDefaults(
   defineProps<{
     visible: boolean
@@ -27,12 +27,16 @@ const props = withDefaults(
     message?: string
     confirmText?: string
     closeOnOverlay?: boolean
+    showConfirmButton?: boolean
+    autoCloseDelay?: number
   }>(),
   {
     title: '',
     message: '',
     confirmText: '',
-    closeOnOverlay: true
+    closeOnOverlay: true,
+    showConfirmButton: true,
+    autoCloseDelay: 0
   }
 )
 
@@ -55,6 +59,14 @@ const handleOverlayClick = () => {
     close()
   }
 }
+
+watch(() => props.visible, (newVal) => {
+  if (newVal && props.autoCloseDelay > 0) {
+    setTimeout(() => {
+      close()
+    }, props.autoCloseDelay)
+  }
+})
 </script>
 
 <style lang="scss" scoped>

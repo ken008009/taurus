@@ -7,7 +7,9 @@ export default {
     prompt: 'ヒント',
     comingSoon: '準備中',
     submit: '送信',
-    enterInviteCode: '招待コードを入力してください'
+    enterInviteCode: '招待コードを入力してください',
+    contractVerifying: '検証中',
+    walletConnecting: '接続中'
   },
   index: {
     welcomeSubtitle: '世界初のAIトレースアプリチェーン',
@@ -19,11 +21,11 @@ export default {
     blockInterval: 'ブロック出力間隔：3 seconds/block',
     blocksPerDay: '24時間ブロック数：22300',
     scenariosTitle: '二、実用シナリオ',
-    chainLaunch: 'Taurus パブリックチェーン（2027年2月中旬正式リリース予定）',
-    miningLaunch: 'Taurus マイニング（稼働中）',
-    paymentLaunch: 'チェーン上決済（稼働中）',
-    gameBeta: 'チェーン上ゲーム（ベータテスト中、2026年11月リリース予定）',
-    mallLaunch: 'チェーン上モール（稼働中）',
+    chainLaunch: 'Taurus パブリックチェーン：2027年5月コード正式オープンソース予定',
+    miningLaunch: 'Taurus マイニング：2026年6月中旬リリース予定',
+    paymentLaunch: 'チェーン上決済：2026年10月リリース予定',
+    gameBeta: 'チェーン上ゲーム：2026年11月リリース予定',
+    mallLaunch: 'チェーン上モール：2026年12月リリース予定',
     techTitle: '三、技術アーキテクチャ',
     techDesc: '分散ストレージ：当プラットフォームは多くの開発者と企業を集め、AI分野の専門家、起業家、パートナー間の緊密な協力を促進し、共に技術を推進します',
     startNow: '今すぐ開始',

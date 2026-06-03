@@ -7,7 +7,9 @@ export default {
     prompt: '提示',
     comingSoon: '暂未开放',
     submit: '提交',
-    enterInviteCode: '请输入邀请码'
+    enterInviteCode: '请输入邀请码',
+    contractVerifying: '合约验证中',
+    walletConnecting: '钱包连接中'
   },
   index: {
     welcomeSubtitle: '全球首个 AI 溯源应用链',
@@ -37,11 +39,11 @@ export default {
     blockInterval: '块输出间隔：3 seconds/block',
     blocksPerDay: '每24小时区块：22300',
     scenariosTitle: '二、实用场景',
-    chainLaunch: 'Taurus 公链（将在2027年2月中旬正式上线）',
-    miningLaunch: 'Taurus 挖矿（已上线）',
-    paymentLaunch: '链上支付（已上线）',
-    gameBeta: '链上游戏（内测中2026年11月份上线）',
-    mallLaunch: '链上商城（已上线）',
+    chainLaunch: 'Taurus公链：预计2027年5月代码正式开源',
+    miningLaunch: 'Taurus挖矿：2026年6中旬上线',
+    paymentLaunch: '链上支付：2026年10月上线',
+    gameBeta: '链上游戏：2026年11月份上线',
+    mallLaunch: '链上商城：2026年12月份上线',
     techTitle: '三、技术架构',
     techDesc: '分布式存储：我们的平台汇聚了众多开发者与企业，促进了AI智能领域专业人士、企业家及合作伙伴间的紧密合作，共同推动科技',
     becomeIdo: '立即成为IDO',

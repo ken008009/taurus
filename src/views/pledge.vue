@@ -2,7 +2,7 @@
   <div class="pledge-page">
     <Header />
     <div class="container">
-      <img src="/assets/images/index/pledge/hero.png" :alt="$t('pledge.pledge')" class="hero-image" />
+      <img src="/static/pledge/hero.png" :alt="$t('pledge.pledge')" class="hero-image" />
 
       <div class="number-container">
         <!-- <template v-for="(item, index) in digitLayout" :key="index">

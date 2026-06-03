@@ -7,7 +7,9 @@ export default {
     prompt: '提示',
     comingSoon: '暫未開放',
     submit: '提交',
-    enterInviteCode: '請輸入邀請碼'
+    enterInviteCode: '請輸入邀請碼',
+    contractVerifying: '合約驗證中',
+    walletConnecting: '錢包連接中'
   },
   index: {
     welcomeSubtitle: '全球首個 AI 溯源應用鏈',
@@ -19,11 +21,11 @@ export default {
     blockInterval: '塊輸出間隔：3 seconds/block',
     blocksPerDay: '每24小時區塊：22300',
     scenariosTitle: '二、實用場景',
-    chainLaunch: 'Taurus 公鏈（將在2027年2月中旬正式上線）',
-    miningLaunch: 'Taurus 挖礦（已上線）',
-    paymentLaunch: '鏈上支付（已上線）',
-    gameBeta: '鏈上遊戲（內測中2026年11月份上線）',
-    mallLaunch: '鏈上商城（已上線）',
+    chainLaunch: 'Taurus公鏈：預計2027年5月代碼正式開源',
+    miningLaunch: 'Taurus挖礦：2026年6中旬上線',
+    paymentLaunch: '鏈上支付：2026年10月上線',
+    gameBeta: '鏈上遊戲：2026年11月份上線',
+    mallLaunch: '鏈上商城：2026年12月份上線',
     techTitle: '三、技術架構',
     techDesc: '分佈式存儲：我們的平台匯聚了眾多開發者與企業，促進了AI智能領域專業人士、企業家及合作夥伴間的緊密合作，共同推動科技',
     startNow: '立即開始',

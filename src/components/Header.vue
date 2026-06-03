@@ -158,16 +158,6 @@ const handleWalletClick = () => {
         font-weight: 500;
         cursor: pointer;
         transition: all $transition-fast;
-
-        &:hover {
-          background: $gradient-gold;
-          color: $text-inverse;
-          transform: translateY(-1px);
-        }
-
-        &:active {
-          transform: translateY(0);
-        }
       }
 
       .language-selector {

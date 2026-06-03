@@ -7,7 +7,9 @@ export default {
     prompt: 'Prompt',
     comingSoon: 'Coming Soon',
     submit: 'Submit',
-    enterInviteCode: 'Please enter invitation code'
+    enterInviteCode: 'Please enter invitation code',
+    contractVerifying: 'Verifying',
+    walletConnecting: 'Connecting'
   },
   index: {
     welcomeSubtitle: "World's First AI Traceability App Chain",
@@ -19,11 +21,11 @@ export default {
     blockInterval: 'Block Interval: 3 seconds/block',
     blocksPerDay: 'Blocks per 24h: 22300',
     scenariosTitle: 'II. Use Cases',
-    chainLaunch: 'Taurus Chain (Launching mid-Feb 2027)',
-    miningLaunch: 'Taurus Mining (Live)',
-    paymentLaunch: 'On-chain Payment (Live)',
-    gameBeta: 'On-chain Games (Beta, Nov 2026)',
-    mallLaunch: 'On-chain Mall (Live)',
+    chainLaunch: 'Taurus Chain: Code open source expected May 2027',
+    miningLaunch: 'Taurus Mining: Launching mid-June 2026',
+    paymentLaunch: 'On-chain Payment: Launching October 2026',
+    gameBeta: 'On-chain Games: Launching November 2026',
+    mallLaunch: 'On-chain Mall: Launching December 2026',
     techTitle: 'III. Technical Architecture',
     techDesc: 'Distributed Storage: Our platform brings together developers and enterprises, fostering close collaboration among AI professionals, entrepreneurs and partners to jointly drive technological advancement',
     startNow: 'Start Now',

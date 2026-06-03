@@ -54,6 +54,7 @@
     "@plaoc/plugins": "^1.1.9",
     "@types/crypto-js": "^4.2.2",
     "@types/qrcode": "^1.5.5",
+    "@types/three": "^0.184.1",
     "@vitejs/plugin-vue": "^3.0.3",
     "i18next-scanner": "^4.6.0",
     "sass": "^1.100.0",

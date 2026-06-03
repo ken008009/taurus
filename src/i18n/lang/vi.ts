@@ -7,7 +7,9 @@ export default {
     prompt: 'Nhắc nhở',
     comingSoon: 'Sắp ra mắt',
     submit: 'Gửi',
-    enterInviteCode: 'Vui lòng nhập mã mời'
+    enterInviteCode: 'Vui lòng nhập mã mời',
+    contractVerifying: 'Đang xác minh',
+    walletConnecting: 'Đang kết nối'
   },
   index: {
     welcomeSubtitle: 'Chuỗi ứng dụng truy xuất AI đầu tiên trên thế giới',
@@ -19,11 +21,11 @@ export default {
     blockInterval: 'Khoảng thời gian khối：3 seconds/block',
     blocksPerDay: 'Số khối mỗi 24h：22300',
     scenariosTitle: '二、Kịch bản thực tế',
-    chainLaunch: 'Taurus Chain（Ra mắt giữa tháng 2/2027）',
-    miningLaunch: 'Taurus Mining（Đang hoạt động）',
-    paymentLaunch: 'Thanh toán trên chuỗi（Đang hoạt động）',
-    gameBeta: 'Trò chơi trên chuỗi（Beta, tháng 11/2026）',
-    mallLaunch: 'Mall trên chuỗi（Đang hoạt động）',
+    chainLaunch: 'Taurus Chain: Mã nguồn mở dự kiến tháng 5/2027',
+    miningLaunch: 'Taurus Mining: Ra mắt giữa tháng 6/2026',
+    paymentLaunch: 'Thanh toán trên chuỗi: Ra mắt tháng 10/2026',
+    gameBeta: 'Trò chơi trên chuỗi: Ra mắt tháng 11/2026',
+    mallLaunch: 'Mall trên chuỗi: Ra mắt tháng 12/2026',
     techTitle: '三、Kiến trúc kỹ thuật',
     techDesc: 'Lưu trữ phân tán：Nền tảng của chúng tôi quy tụ nhiều nhà phát triển và doanh nghiệp, thúc đẩy sự hợp tác chặt chẽ giữa các chuyên gia AI, doanh nhân và đối tác, cùng nhau thúc đẩy công nghệ',
     startNow: 'Bắt đầu ngay',

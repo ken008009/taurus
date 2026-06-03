@@ -32,16 +32,16 @@
           <div class="nav-item" :class="{ active: isActive('/mine') }" @click="router.push('/mine')">
             {{ $t('tab.myAssets') }}
           </div>
-          <div class="nav-item" @click="window.open('https://www.ispaychain.com/?code=0x0b57d116D292dBF4FFd9C979606D9D9EAea0e0a2', '_blank')">
+          <div class="nav-item" @click="handleExternalLink">
             {{ $t('tab.internationalPayment') }}
           </div>
-          <div class="nav-item" @click="handleDownload">
+          <div class="nav-item" @click="showToast($t('common.comingSoon'))">
             {{ $t('tab.chainGames') }}
           </div>
-          <div class="nav-item" @click="handleDownload">
+          <div class="nav-item" @click="showToast($t('common.comingSoon'))">
             {{ $t('tab.chainMall') }}
           </div>
-          <div class="nav-item disabled" @click="showModal = true; modalMessage = $t('common.comingSoon')">
+          <div class="nav-item" @click="showToast($t('common.comingSoon'))">
             {{ $t('tab.taurusChain') }}
           </div>
         </nav>
@@ -53,8 +53,8 @@
       :visible="showModal"
       :message="modalMessage"
       :confirm-text="$t('common.confirm')"
-      @close="showModal = false"
-      @confirm="showModal = false"
+      @close="handleModalClose"
+      @confirm="handleModalClose"
     />
   </Teleport>
 </template>
@@ -63,6 +63,7 @@
 import { ref, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import { showToast } from 'vant'
 import userPerson from '@/pinia/person'
 import Modal from '@/components/Modal.vue'
 
@@ -111,7 +112,19 @@ const handleDownload = () => {
   document.body.appendChild(link)
   link.click()
   document.body.removeChild(link)
-  close()
+}
+
+const handleExternalLink = () => {
+  window.open('https://www.ispaychain.com/?code=0x0b57d116D292dBF4FFd9C979606D9D9EAea0e0a2', '_blank')
+}
+
+const handleComingSoon = () => {
+  showModal.value = true
+  modalMessage.value = $t('common.comingSoon')
+}
+
+const handleModalClose = () => {
+  showModal.value = false
 }
 
 const handleCopyAddress = async () => {
@@ -221,6 +234,7 @@ const handleCopyAddress = async () => {
 }
 
 .sidebar-nav {
+  width: 260px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -230,7 +244,7 @@ const handleCopyAddress = async () => {
   padding: 12px 32px;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 32px;
-  color: #fff;
+  color: #f6f6f6;
   font-size: 16px;
   text-align: center;
   cursor: pointer;

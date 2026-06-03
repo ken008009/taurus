@@ -1,6 +1,6 @@
 import { createI18n } from 'vue-i18n';
-import zh from '../i18n/language/zh.json'
-import en from '../i18n/language/en.json'
+import zh from '../i18n/lang/zh'
+import en from '../i18n/lang/en'
 
 // import els from "./els"
 // import zh from "./zh"
