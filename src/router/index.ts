@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory, Component } from "vue-router";
-import Index from "@/views/index/index.vue";
+import Index from "@/views/index.vue";
 import IdoDetails from '@/views/ido/details.vue'
 import Profile from '@/views/profile/index.vue'
 import Payment from '@/views/payment/index.vue'
