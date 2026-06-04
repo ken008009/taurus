@@ -40,7 +40,7 @@
           <div class="order-list" v-for="(item, index) in orderList" :key="index">
             <div class="table-row">
               <span>{{ item.amount }}</span>
-              <span>{{ getStatusText(item.status) }}</span>
+              <span>{{ $t('node.subscribed') }}</span>
               <span>{{ item.createdAt }}</span>
             </div>
           </div>
@@ -114,7 +114,6 @@ const getStatusText = (status: string) => {
 }
 
 const handleSubscribe = async (amount: number) => {
-  if (amount === 500) return // 500档位未开放
   
   await request.post("app_server/buy", {
     amount: amount,
