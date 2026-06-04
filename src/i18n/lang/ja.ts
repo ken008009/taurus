@@ -12,7 +12,8 @@ export default {
     walletConnecting: '接続中',
     insufficientBalance: '残高不足',
     quantity: '数量',
-    copiedToClipboard: '内容がクリップボードにコピーされました'
+    copiedToClipboard: '内容がクリップボードにコピーされました',
+    authorizing: '認証中'
   },
   index: {
     welcomeSubtitle: '世界初のAIトレースアプリチェーン',

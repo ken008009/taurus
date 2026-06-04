@@ -12,7 +12,8 @@ export default {
     walletConnecting: '연결 중',
     insufficientBalance: '잔액 부족',
     quantity: '수량',
-    copiedToClipboard: '내용이 클립보드에 복사되었습니다'
+    copiedToClipboard: '내용이 클립보드에 복사되었습니다',
+    authorizing: '인증 중'
   },
   index: {
     welcomeSubtitle: '세계 최초 AI 추적 앱 체인',

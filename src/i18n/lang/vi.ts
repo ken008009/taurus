@@ -12,7 +12,8 @@ export default {
     walletConnecting: 'Đang kết nối',
     insufficientBalance: 'Số dư không đủ',
     quantity: 'Số lượng',
-    copiedToClipboard: 'Nội dung đã được sao chép vào bộ nhớ tạm'
+    copiedToClipboard: 'Nội dung đã được sao chép vào bộ nhớ tạm',
+    authorizing: 'Đang ủy quyền'
   },
   index: {
     welcomeSubtitle: 'Chuỗi ứng dụng truy xuất AI đầu tiên trên thế giới',

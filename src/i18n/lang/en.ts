@@ -12,7 +12,8 @@ export default {
     walletConnecting: 'Connecting',
     insufficientBalance: 'Insufficient Balance',
     quantity: 'Quantity',
-    copiedToClipboard: 'Content copied to clipboard'
+    copiedToClipboard: 'Content copied to clipboard',
+    authorizing: 'Authorizing'
   },
   index: {
     welcomeSubtitle: "World's First AI Traceability App Chain",

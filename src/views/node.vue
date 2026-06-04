@@ -66,13 +66,14 @@ import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Header from '@/components/Header.vue'
 import request from '@/tools/request'
-import { Contract } from '@/tools/contract'
-import { showSuccessToast, showFailToast } from 'vant'
+import { Contract, ETH } from '@/tools/contract'
+import { showSuccessToast, showFailToast, showLoadingToast, closeToast } from 'vant'
 import { Pagination } from 'vant'
 import userPerson from '@/pinia/person'
 import lang from '@/i18n/index'
 
 const BUY = new Contract(import.meta.env.VITE_BUY, "BUY")
+const USDT = new Contract(import.meta.env.VITE_USDT, "ERC20")
 
 const { t: $t } = useI18n()
 const person = userPerson()
@@ -87,6 +88,7 @@ const selectedTier = ref<number | null>(null)
 const orderList = ref<any[]>([])
 const allPage = ref(1)
 const allPageCount = ref(1)
+const usdtApproved = ref(false)
 
 const nodeTiers: NodeTier[] = [
   { price: 500, subscribed: 0 },
@@ -120,11 +122,44 @@ const getStatusText = (status: string) => {
   return $t('node.statusPending')
 }
 
+/* 获取授权 */
+const getUsdtApproved = async () => {
+  let res = await USDT.call("allowance", [ETH.account, BUY.address]);
+  console.log('getUsdtApproved', Number(res))
+  usdtApproved.value = Number(res) > 0;
+  closeToast()
+  return usdtApproved.value
+}
+
+const usdtApprove = async () => {
+  showLoadingToast({
+    message: lang('common.authorizing'), duration: 0, overlay: true, overlayStyle: {
+      background: "transparent"
+    }
+  });
+  await USDT.send("approve", [
+    BUY.address,
+    "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+  ]).then(getUsdtApproved).catch(() => closeToast());
+}
+
 const handleSubscribe = async (amount: number) => {
+  // 先检查授权状态
+  if (!usdtApproved.value) {
+    await usdtApprove()
+    // 授权成功后再执行购买
+    if (!usdtApproved.value) {
+      return // 授权失败，不继续执行
+    }
+  }
+
   BUY.send("buy", [amount]).then(() => {
     console.log('认购成功')
     showSuccessToast($t('node.subscribeSuccess'))
-    getOrderList(allPage.value) // 刷新订单列表
+    // 延迟刷新订单列表，等待后端处理完成
+    setTimeout(() => {
+      getOrderList(allPage.value)
+    }, 3000)
   }).catch((error: any) => {
     console.log(error)
     // 检查是否是余额不足错误
@@ -138,6 +173,7 @@ const handleSubscribe = async (amount: number) => {
 
 onMounted(() => {
   getOrderList()
+  getUsdtApproved()
 })
 </script>
 

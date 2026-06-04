@@ -12,7 +12,8 @@ export default {
     walletConnecting: '錢包連接中',
     insufficientBalance: '餘額不足',
     quantity: '數量',
-    copiedToClipboard: '內容已複製到剪貼板'
+    copiedToClipboard: '內容已複製到剪貼板',
+    authorizing: '授權中'
   },
   index: {
     welcomeSubtitle: '全球首個 AI 溯源應用鏈',
