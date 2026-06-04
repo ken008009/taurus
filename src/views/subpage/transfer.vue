@@ -111,7 +111,7 @@ const handleSubmit = async () => {
     return showFailToast(lang('请输入转账金额'))
   }
   if (Number(amount) > Number(userinfo.rawNew)) {
-    return showFailToast(lang('余额不足'))
+    return showFailToast(lang('common.insufficientBalance'))
   }
 
   showLoadingToast({

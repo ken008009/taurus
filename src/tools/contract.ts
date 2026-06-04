@@ -165,7 +165,7 @@ export class Contract {
     } catch (error: any) {
       let msg: any = ''
       if (error.data) msg = error.data.message
-      else if (/balance/gi.test(error.toString())) msg = lang('余额不足')
+      else if (/balance/gi.test(error.toString())) msg = lang('common.insufficientBalance')
       else if (/^Error/gi.test(error.toString())) msg = lang('参数错误')
       else if (error.message) msg = error.message
       else msg = error

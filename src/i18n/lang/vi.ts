@@ -9,7 +9,8 @@ export default {
     submit: 'Gửi',
     enterInviteCode: 'Vui lòng nhập mã mời',
     contractVerifying: 'Đang xác minh',
-    walletConnecting: 'Đang kết nối'
+    walletConnecting: 'Đang kết nối',
+    insufficientBalance: 'Số dư không đủ'
   },
   index: {
     welcomeSubtitle: 'Chuỗi ứng dụng truy xuất AI đầu tiên trên thế giới',

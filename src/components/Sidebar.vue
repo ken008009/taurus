@@ -19,9 +19,9 @@
           <div class="nav-item" :class="{ active: isActive('/') }" @click="router.push('/')">
             {{ $t('tab.home') }}
           </div>
-          <div class="nav-item" :class="{ active: isActive('/recharge') }" @click="router.push('/recharge')">
+          <!-- <div class="nav-item" :class="{ active: isActive('/recharge') }" @click="router.push('/recharge')">
             {{ $t('recharge.recharge') }}
-          </div>
+          </div> -->
           <div class="nav-item" :class="{ active: isActive('/node') }" @click="router.push('/node')">
             {{ $t('tab.nodeSubscription') }}
           </div>

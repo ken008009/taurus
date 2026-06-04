@@ -9,7 +9,8 @@ export default {
     submit: '제출',
     enterInviteCode: '초대 코드를 입력하세요',
     contractVerifying: '검증 중',
-    walletConnecting: '연결 중'
+    walletConnecting: '연결 중',
+    insufficientBalance: '잔액 부족'
   },
   index: {
     welcomeSubtitle: '세계 최초 AI 추적 앱 체인',

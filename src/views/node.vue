@@ -19,7 +19,7 @@
             <div class="tier-price">{{ tier.price }}</div>
             <div class="tier-unit">USDT</div>
           </div>
-          <button class="subscribe-btn" @click="handleSubscribe(tier.price)">
+          <button class="subscribe-btn" @click="handleSubscribe(tier.price)" :disabled="isSubscribed(tier.price)">
             {{ $t('node.subscribeNow') }}
           </button>
         </div>
@@ -34,13 +34,13 @@
         <div class="table-card">
           <div class="table-header">
             <span>{{ $t('node.amount') }}</span>
-            <span>{{ $t('node.status') }}</span>
+            <!-- <span>{{ $t('node.status') }}</span> -->
             <span>{{ $t('node.time') }}</span>
           </div>
           <div class="order-list" v-for="(item, index) in orderList" :key="index">
             <div class="table-row">
               <span>{{ item.amount }}</span>
-              <span>{{ $t('node.subscribed') }}</span>
+              <!-- <span>{{ $t('node.subscribed') }}</span> -->
               <span>{{ item.createdAt }}</span>
             </div>
           </div>
@@ -66,10 +66,13 @@ import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Header from '@/components/Header.vue'
 import request from '@/tools/request'
+import { Contract } from '@/tools/contract'
 import { showSuccessToast, showFailToast } from 'vant'
 import { Pagination } from 'vant'
 import userPerson from '@/pinia/person'
 import lang from '@/i18n/index'
+
+const BUY = new Contract(import.meta.env.VITE_BUY, "BUY")
 
 const { t: $t } = useI18n()
 const person = userPerson()
@@ -96,6 +99,10 @@ const selectTier = (price: number) => {
   selectedTier.value = price
 }
 
+const isSubscribed = (amount: number) => {
+  return orderList.value.some(order => Number(order.amount) === amount)
+}
+
 const getOrderList = async (page: number = 1) => {
   await request.get("app_server/order_list", {
     params: {
@@ -114,20 +121,18 @@ const getStatusText = (status: string) => {
 }
 
 const handleSubscribe = async (amount: number) => {
-  
-  await request.post("app_server/buy", {
-    amount: amount,
-    sign: sign
-  }).then((res) => {
-    const status = String(res.status)
-    if (status === 'ok' || status === 'OK' || status === '200') {
-      showSuccessToast($t('node.subscribeSuccess'))
-      getOrderList(allPage.value) // 刷新订单列表
+  BUY.send("buy", [amount]).then(() => {
+    console.log('认购成功')
+    showSuccessToast($t('node.subscribeSuccess'))
+    getOrderList(allPage.value) // 刷新订单列表
+  }).catch((error: any) => {
+    console.log(error)
+    // 检查是否是余额不足错误
+    if (error && error.message && error.message.includes('balance')) {
+      showFailToast($t('common.insufficientBalance'))
     } else {
-      showFailToast(status)
+      showFailToast($t('node.subscribeFailed'))
     }
-  }).catch((error) => {
-    showFailToast($t('node.subscribeFailed'))
   })
 }
 
@@ -413,6 +418,8 @@ onMounted(() => {
     &:disabled {
       opacity: 0.5;
       cursor: not-allowed;
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.5);
     }
   }
 }

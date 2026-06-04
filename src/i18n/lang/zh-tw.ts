@@ -9,7 +9,8 @@ export default {
     submit: '提交',
     enterInviteCode: '請輸入邀請碼',
     contractVerifying: '合約驗證中',
-    walletConnecting: '錢包連接中'
+    walletConnecting: '錢包連接中',
+    insufficientBalance: '餘額不足'
   },
   index: {
     welcomeSubtitle: '全球首個 AI 溯源應用鏈',

@@ -9,7 +9,8 @@ export default {
     submit: 'Submit',
     enterInviteCode: 'Please enter invitation code',
     contractVerifying: 'Verifying',
-    walletConnecting: 'Connecting'
+    walletConnecting: 'Connecting',
+    insufficientBalance: 'Insufficient Balance'
   },
   index: {
     welcomeSubtitle: "World's First AI Traceability App Chain",

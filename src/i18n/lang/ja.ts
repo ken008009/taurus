@@ -9,7 +9,8 @@ export default {
     submit: '送信',
     enterInviteCode: '招待コードを入力してください',
     contractVerifying: '検証中',
-    walletConnecting: '接続中'
+    walletConnecting: '接続中',
+    insufficientBalance: '残高不足'
   },
   index: {
     welcomeSubtitle: '世界初のAIトレースアプリチェーン',
