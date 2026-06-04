@@ -10,7 +10,9 @@ export default {
     enterInviteCode: 'Please enter invitation code',
     contractVerifying: 'Verifying',
     walletConnecting: 'Connecting',
-    insufficientBalance: 'Insufficient Balance'
+    insufficientBalance: 'Insufficient Balance',
+    quantity: 'Quantity',
+    copiedToClipboard: 'Content copied to clipboard'
   },
   index: {
     welcomeSubtitle: "World's First AI Traceability App Chain",
@@ -63,6 +65,9 @@ export default {
     communitySize: 'Community Size',
     totalIncome: 'Total Income',
     communityPerformance: 'Community Performance',
+    totalPerformance: 'Total Performance',
+    regionalPerformance: 'Regional Performance',
+    directInviteData: 'Direct Invite Data',
     teamIdoTotal: 'Team IDO Total',
     personalRedeemed: 'Personal Redeemed',
     teamRedeemed: 'Team Redeemed',

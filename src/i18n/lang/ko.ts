@@ -10,7 +10,9 @@ export default {
     enterInviteCode: '초대 코드를 입력하세요',
     contractVerifying: '검증 중',
     walletConnecting: '연결 중',
-    insufficientBalance: '잔액 부족'
+    insufficientBalance: '잔액 부족',
+    quantity: '수량',
+    copiedToClipboard: '내용이 클립보드에 복사되었습니다'
   },
   index: {
     welcomeSubtitle: '세계 최초 AI 추적 앱 체인',
@@ -63,6 +65,9 @@ export default {
     communitySize: '커뮤니티 인원',
     totalIncome: '누적 수익',
     communityPerformance: '커뮤니티 실적',
+    totalPerformance: '총 실적',
+    regionalPerformance: '대구 실적',
+    directInviteData: '직접 초대 데이터',
     teamIdoTotal: '팀 IDO 총량',
     personalRedeemed: '개인 상환 실적',
     teamRedeemed: '팀 상환 실적',

@@ -10,7 +10,9 @@ export default {
     enterInviteCode: 'Vui lòng nhập mã mời',
     contractVerifying: 'Đang xác minh',
     walletConnecting: 'Đang kết nối',
-    insufficientBalance: 'Số dư không đủ'
+    insufficientBalance: 'Số dư không đủ',
+    quantity: 'Số lượng',
+    copiedToClipboard: 'Nội dung đã được sao chép vào bộ nhớ tạm'
   },
   index: {
     welcomeSubtitle: 'Chuỗi ứng dụng truy xuất AI đầu tiên trên thế giới',
@@ -63,6 +65,9 @@ export default {
     communitySize: 'Số người cộng đồng',
     totalIncome: 'Tổng thu nhập',
     communityPerformance: 'Thành tích cộng đồng',
+    totalPerformance: 'Tổng thành tích',
+    regionalPerformance: 'Thành tích khu vực',
+    directInviteData: 'Dữ liệu mời trực tiếp',
     teamIdoTotal: 'Tổng IDO nhóm',
     personalRedeemed: 'Thành tích đã chuộc cá nhân',
     teamRedeemed: 'Thành tích đã chuộc nhóm',

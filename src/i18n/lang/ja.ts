@@ -10,7 +10,9 @@ export default {
     enterInviteCode: '招待コードを入力してください',
     contractVerifying: '検証中',
     walletConnecting: '接続中',
-    insufficientBalance: '残高不足'
+    insufficientBalance: '残高不足',
+    quantity: '数量',
+    copiedToClipboard: '内容がクリップボードにコピーされました'
   },
   index: {
     welcomeSubtitle: '世界初のAIトレースアプリチェーン',
@@ -63,6 +65,9 @@ export default {
     communitySize: 'コミュニティ人数',
     totalIncome: '累計収益',
     communityPerformance: 'コミュニティ業績',
+    totalPerformance: '総業績',
+    regionalPerformance: '大区業績',
+    directInviteData: '直接招待データ',
     teamIdoTotal: 'チームIDO総量',
     personalRedeemed: '個人償還業績',
     teamRedeemed: 'チーム償還業績',

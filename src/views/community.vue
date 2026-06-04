@@ -51,6 +51,29 @@
         </div> -->
       </div>
 
+      <div class="performance-list">
+        <div class="performance-info">
+          <div class="performance-info-item">
+            <p>{{ userinfo.total || 0 }}</p>
+            <p>{{ $t('community.totalPerformance') }}</p>
+          </div>
+          <div class="performance-info-item">
+            <p>{{ userinfo.max || 0 }}</p>
+            <p>{{ $t('community.regionalPerformance') }}</p>
+          </div>
+        </div>
+        <div class="performance-share-title">{{ $t('community.directInviteData') }}</div>
+        <div class="performance-share-list">
+          <Tree
+            v-if="treeData.length > 0"
+            v-model:expandedKeys="expandedKeys"
+            v-model:selectedKeys="selectedKeys"
+            :load-data="onLoadData"
+            :tree-data="treeData"
+          />
+        </div>
+      </div>
+
       <h3 class="list-title">{{ $t('community.rewardRecord') }}</h3>
 
       <div class="table-card">
@@ -94,6 +117,8 @@ import { showToast } from 'vant'
 import copy from 'copy-to-clipboard'
 import request from '@/tools/request'
 import { Pagination } from 'vant'
+import { Tree } from 'ant-design-vue'
+import lang from '@/i18n/index'
 
 const person = userPerson()
 const userinfo = computed(() => person.userinfo)
@@ -106,6 +131,11 @@ let page = $ref(1)
 let allPageCount = $ref(1)
 let active = $ref('3') // 默认使用 reqType=3 (直推收益)
 
+// performance-list 相关变量
+const expandedKeys = $ref([])
+const selectedKeys = $ref([])
+let treeData = $ref([])
+
 const formatAddress = (value: string) => {
   if (!value) return ''
   const frontSix = value.slice(0, 6)
@@ -116,7 +146,44 @@ const formatAddress = (value: string) => {
 
 const copyToClipboard = (text: string) => {
   copy(text)
-  showToast('内容已复制到剪贴板')
+  showToast(lang('common.copiedToClipboard'))
+}
+
+const onLoadData = (treeNode: any) => {
+  return new Promise<void>(async (resolve) => {
+    if (treeNode.dataRef.children) {
+      resolve()
+      return
+    }
+
+    const res: any = await request.get(`app_server/recommend_list?address=${treeNode.dataRef.address}`)
+
+    setTimeout(() => {
+      treeNode.dataRef.children = res.recommends.map((item: any, index: number) => {
+        return {
+          title: `${formatAddress(item.address)}---(${lang('common.quantity')}:${item.amount})`,
+          key: `${treeNode.eventKey}-${index}`,
+          amount: item.amount,
+          address: item.address,
+          isLeaf: false
+        }
+      })
+      treeData = [...treeData]
+      resolve()
+    }, 1000)
+  })
+}
+
+const getUserArea = async () => {
+  const res: any = await request.get(`app_server/recommend_list?address=${address.value}`)
+  treeData = res.recommends.map((item: any, index: number) => {
+    return {
+      title: `${formatAddress(item.address)}---(${lang('common.quantity')}:${item.amount})`,
+      key: index,
+      address: item.address,
+      isLeaf: item.countLow === 0
+    }
+  })
 }
 
 const getRewardList = async (pageNum: number = 1) => {
@@ -133,6 +200,7 @@ const getRewardList = async (pageNum: number = 1) => {
 
 onMounted(() => {
   getRewardList()
+  getUserArea()
 })
 </script>
 
@@ -157,7 +225,7 @@ onMounted(() => {
 
 .info-box {
   width: 100%;
-  min-height: 93px;
+  min-height: 80px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 18px;
   padding: 15px 15px 20px 15px;
@@ -330,6 +398,100 @@ onMounted(() => {
     }
   }
 }
+
+ .performance-list {
+    margin-top: 20px;
+    min-height: 200px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 18px;
+    padding: 16px;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+
+    .performance-info {
+      display: flex;
+      justify-content: space-between;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      margin-bottom: 20px;
+      padding: 10px;
+
+      .performance-info-item {
+        height: 66px;
+        flex: 1 0 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        p {
+          color: #fff;
+          margin: 0;
+
+          &:first-child {
+            font-size: 24px;
+            font-weight: 600;
+            color: $brand-gold;
+          }
+
+          &:last-child {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+          }
+        }
+      }
+    }
+
+    .performance-share-title {
+      margin-bottom: 15px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .performance-share-list {
+      // width: 100%;
+      display: flex;
+      min-height: 100px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      padding: 15px;
+      overflow-x: auto;
+
+      :deep(.ant-tree) {
+        background: transparent;
+        color: #fff;
+        width: 100%;
+
+        .ant-tree-treenode {
+          padding: 4px 0;
+
+          .ant-tree-node-content-wrapper {
+            color: #fff;
+            &:hover {
+              background: rgba(212, 175, 55, 0.1);
+            }
+          }
+
+          .ant-tree-switcher {
+            color: #fff;
+          }
+
+          .ant-tree-node-title {
+            color: #fff;
+          }
+        }
+
+        .ant-tree-switcher_open,
+        .ant-tree-switcher_close {
+          color: $brand-gold;
+        }
+      }
+    }
+  }
 
 .safe-bottom {
   height: 50px;

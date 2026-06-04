@@ -10,7 +10,9 @@ export default {
     enterInviteCode: '请输入邀请码',
     contractVerifying: '合约验证中',
     walletConnecting: '钱包连接中',
-    insufficientBalance: '余额不足'
+    insufficientBalance: '余额不足',
+    quantity: '数量',
+    copiedToClipboard: '内容已复制到剪贴板'
   },
   index: {
     welcomeSubtitle: '全球首个 AI 溯源应用链',
@@ -63,6 +65,9 @@ export default {
     communitySize: '社区人数',
     totalIncome: '累计收益',
     communityPerformance: '社区业绩',
+    totalPerformance: '总业绩',
+    regionalPerformance: '大区业绩',
+    directInviteData: '直接邀请数据',
     teamIdoTotal: '团队IDO总量',
     personalRedeemed: '个人已赎回业绩',
     teamRedeemed: '团队已赎回业绩',
