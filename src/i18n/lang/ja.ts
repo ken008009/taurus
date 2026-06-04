@@ -33,7 +33,7 @@ export default {
     techDesc: '分散ストレージ：当プラットフォームは多くの開発者と企業を集め、AI分野の専門家、起業家、パートナー間の緊密な協力を促進し、共に技術を推進します',
     startNow: '今すぐ開始',
     idoRecruitPlan: 'IDO募集計画',
-    idoSubtitle: 'Taurus IDOになり、出金手数料配当、レベルアップなどの機能を享受',
+    idoSubtitle: 'Taurus IDOになり、出金手数料配当を享受。コミュニティレベル、トークンエアドロップなどの特典を贈呈。',
     idoRights: 'IDO権益',
     limited: '限定{count}部',
     usdtPerShare: 'USDT/部',

@@ -19,7 +19,7 @@ export default {
     welcomeDescription: '数字文明的价值溯源网络',
     startNow: '立即开始',
     idoRecruitPlan: 'IDO招募计划',
-    idoSubtitle: '成为Taurus IDO，享受提现手续费分红、升级级别等功能',
+    idoSubtitle: '成为Taurus IDO，享受提现手续费分红。赠送社区等级，代币空投等权益。',
     idoRights: 'IDO权益',
     limited: '限量{count}份',
     usdtPerShare: 'USDT/份',

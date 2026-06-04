@@ -33,7 +33,7 @@ export default {
     techDesc: 'Distributed Storage: Our platform brings together developers and enterprises, fostering close collaboration among AI professionals, entrepreneurs and partners to jointly drive technological advancement',
     startNow: 'Start Now',
     idoRecruitPlan: 'IDO Recruitment Plan',
-    idoSubtitle: 'Become a Taurus IDO and enjoy withdrawal fee dividends, level upgrades, and more benefits',
+    idoSubtitle: 'Become a Taurus IDO and enjoy withdrawal fee dividends. Receive community level, token airdrop, and other benefits.',
     idoRights: 'IDO Rights',
     limited: 'Limited to {count} copies',
     usdtPerShare: 'USDT/Share',

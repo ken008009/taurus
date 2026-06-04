@@ -56,24 +56,24 @@
           </div>
 
           <div class="ido-card-right">
-            <span class="ido-limit">{{ $t('index.limited', { count: 0 }) }}</span>
+            <span class="ido-limit">{{ $t('index.limited', { count: 160 }) }}</span>
           </div>
         </div>
 
         <div class="ido-price">
-          <span class="price-number">0</span>
+          <span class="price-number">500～3000</span>
           <span class="price-unit">{{ $t('index.usdtPerShare') }}</span>
         </div>
-        <p class="ido-limit-text">{{ $t('index.accountLimit', { count: 0 }) }}</p>
+        <p class="ido-limit-text">{{ $t('index.accountLimit', { count: 1 }) }}</p>
 
         <div class="project-info">
           <div class="info-section">
             <h4 class="section-title">{{ $t('index.projectInfoTitle1') }}</h4>
             <div class="info-content">
-              <p class="info-item">1. {{ $t('index.totalSupply') }}</p>
-              <p class="info-item">2. {{ $t('index.nodeOutput') }}</p>
+              <p class="info-item">{{ $t('index.totalSupply') }}</p>
+              <!-- <p class="info-item">2. {{ $t('index.nodeOutput') }}</p>
               <p class="info-subitem">{{ $t('index.blockInterval') }}</p>
-              <p class="info-subitem">{{ $t('index.blocksPerDay') }}</p>
+              <p class="info-subitem">{{ $t('index.blocksPerDay') }}</p> -->
             </div>
           </div>
 

@@ -33,7 +33,7 @@ export default {
     techDesc: '분산 스토리지：우리 플랫폼은 수많은 개발자와 기업을 모아 AI 분야 전문가, 기업가 및 파트너 간의 긴밀한 협력을 촉진하여 공동으로 기술을 추진합니다',
     startNow: '지금 시작',
     idoRecruitPlan: 'IDO 모집 계획',
-    idoSubtitle: 'Taurus IDO가 되어 출금 수수료 배당, 레벨 업그레이드 등의 기능을 누리세요',
+    idoSubtitle: 'Taurus IDO가 되어 출금 수수료 배당을 누리세요. 커뮤니티 레벨, 토큰 에어드랍 등 혜택을 제공.',
     idoRights: 'IDO 권익',
     limited: '한정 {count}부',
     usdtPerShare: 'USDT/부',

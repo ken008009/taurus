@@ -33,7 +33,7 @@ export default {
     techDesc: '分佈式存儲：我們的平台匯聚了眾多開發者與企業，促進了AI智能領域專業人士、企業家及合作夥伴間的緊密合作，共同推動科技',
     startNow: '立即開始',
     idoRecruitPlan: 'IDO招募計劃',
-    idoSubtitle: '成為Taurus IDO，享受提現手續費分紅、升級級別等功能',
+    idoSubtitle: '成為Taurus IDO，享受提現手續費分紅。贈送社區等級，代幣空投等權益。',
     idoRights: 'IDO權益',
     limited: '限量{count}份',
     usdtPerShare: 'USDT/份',

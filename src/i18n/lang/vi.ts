@@ -33,7 +33,7 @@ export default {
     techDesc: 'Lưu trữ phân tán：Nền tảng của chúng tôi quy tụ nhiều nhà phát triển và doanh nghiệp, thúc đẩy sự hợp tác chặt chẽ giữa các chuyên gia AI, doanh nhân và đối tác, cùng nhau thúc đẩy công nghệ',
     startNow: 'Bắt đầu ngay',
     idoRecruitPlan: 'Kế hoạch tuyển IDO',
-    idoSubtitle: 'Trở thành Taurus IDO, hưởng phân chia phí rút tiền, nâng cấp cấp độ và nhiều tính năng khác',
+    idoSubtitle: 'Trở thành Taurus IDO và hưởng phân chia phí rút tiền. Nhận cấp độ cộng đồng, airdrop token và các quyền lợi khác.',
     idoRights: 'Quyền lợi IDO',
     limited: 'Giới hạn {count} phần',
     usdtPerShare: 'USDT/phần',

@@ -2,6 +2,11 @@
   <div class="community-page">
     <Header />
     <div class="container">
+
+      <div class="my-level">
+        <span class="level-label">我的等级</span>
+        <span class="level-value">LV{{ userinfo.level }}</span>
+      </div>
       <div class="info-card">
         <div class="info-box">
           <div class="info-title">{{ $t('community.superiorAddress') }}</div>
@@ -216,8 +221,29 @@ onMounted(() => {
   padding: 0 15px;
 }
 
+.my-level {
+  margin-top: 10px;
+  color: $brand-gold;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .level-label {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .level-value {
+    color: $brand-gold;
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
 .info-card {
-  margin-top: 25px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   gap: 13px;
@@ -458,7 +484,7 @@ onMounted(() => {
       min-height: 100px;
       background: rgba(0, 0, 0, 0.2);
       border-radius: 12px;
-      padding: 15px;
+      padding: 10px;
       overflow-x: auto;
 
       :deep(.ant-tree) {
