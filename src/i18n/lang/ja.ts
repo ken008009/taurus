@@ -26,7 +26,7 @@ export default {
     blocksPerDay: '24時間ブロック数：22300',
     scenariosTitle: '二、実用シナリオ',
     chainLaunch: 'Taurus パブリックチェーン：2027年5月コード正式オープンソース予定',
-    miningLaunch: 'Taurus マイニング：2026年6月中旬リリース予定',
+    miningLaunch: 'Taurus マイニング：2026年{month}月中旬リリース予定',
     paymentLaunch: 'チェーン上決済：2026年10月リリース予定',
     gameBeta: 'チェーン上ゲーム：2026年11月リリース予定',
     mallLaunch: 'チェーン上モール：2026年12月リリース予定',

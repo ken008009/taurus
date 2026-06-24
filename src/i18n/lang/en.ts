@@ -26,7 +26,7 @@ export default {
     blocksPerDay: 'Blocks per 24h: 22300',
     scenariosTitle: 'II. Use Cases',
     chainLaunch: 'Taurus Chain: Code open source expected May 2027',
-    miningLaunch: 'Taurus Mining: Launching mid-June 2026',
+    miningLaunch: 'Taurus Mining: Launching in mid-{month} 2026',
     paymentLaunch: 'On-chain Payment: Launching October 2026',
     gameBeta: 'On-chain Games: Launching November 2026',
     mallLaunch: 'On-chain Mall: Launching December 2026',

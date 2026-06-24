@@ -26,7 +26,7 @@ export default {
     blocksPerDay: 'Số khối mỗi 24h：22300',
     scenariosTitle: '二、Kịch bản thực tế',
     chainLaunch: 'Taurus Chain: Mã nguồn mở dự kiến tháng 5/2027',
-    miningLaunch: 'Taurus Mining: Ra mắt giữa tháng 6/2026',
+    miningLaunch: 'Taurus Mining: Ra mắt giữa tháng {month}/2026',
     paymentLaunch: 'Thanh toán trên chuỗi: Ra mắt tháng 10/2026',
     gameBeta: 'Trò chơi trên chuỗi: Ra mắt tháng 11/2026',
     mallLaunch: 'Mall trên chuỗi: Ra mắt tháng 12/2026',

@@ -81,7 +81,7 @@
             <h4 class="section-title">{{ $t('index.scenariosTitle') }}</h4>
             <div class="info-content">
               <p class="info-item">1. {{ $t('index.chainLaunch') }}</p>
-              <p class="info-item">2. {{ $t('index.miningLaunch') }}</p>
+              <p class="info-item">2. {{ $t('index.miningLaunch', { month: 7 }) }}</p>
               <p class="info-item">3. {{ $t('index.paymentLaunch') }}</p>
               <p class="info-item">4. {{ $t('index.gameBeta') }}</p>
               <p class="info-item">5. {{ $t('index.mallLaunch') }}</p>

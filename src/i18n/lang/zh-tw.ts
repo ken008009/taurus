@@ -26,7 +26,7 @@ export default {
     blocksPerDay: '每24小時區塊：22300',
     scenariosTitle: '二、實用場景',
     chainLaunch: 'Taurus公鏈：預計2027年5月代碼正式開源',
-    miningLaunch: 'Taurus挖礦：2026年6中旬上線',
+    miningLaunch: 'Taurus挖礦：2026年{month}月中旬上線',
     paymentLaunch: '鏈上支付：2026年10月上線',
     gameBeta: '鏈上遊戲：2026年11月份上線',
     mallLaunch: '鏈上商城：2026年12月份上線',
