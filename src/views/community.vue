@@ -90,12 +90,10 @@
         </div>
         <div class="income-list" v-if="rewardList.length > 0">
           <div class="income-list-item" v-for="(item, index) in rewardList" :key="index">
-            <div class="income-list-item-info">
-              <p>USDT {{ $t('community.amount') }}：{{ item.amount }}</p>
-              <p v-if="item.num">{{ $t('community.generation') }}：{{ item.num }}</p>
-              <p>{{ item.createdAt }}</p>
-            </div>
-            <div class="income-list-item-money">{{ item.reward }}</div>
+            <span>{{ item.amount }}</span>
+            <span>{{ item.num || '-' }}</span>
+            <span class="reward">{{ item.reward }}</span>
+            <span>{{ item.createdAt }}</span>
           </div>
           <Pagination
             v-model="page"
@@ -368,43 +366,27 @@ onMounted(() => {
   }
 
   .income-list {
-    padding: 10px;
-
     .income-list-item {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 10px;
-      border-bottom: 1px solid $border-light;
       display: flex;
       align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid $border-light;
 
       &:last-child {
         border-bottom: none;
       }
 
-      .income-list-item-info {
+      span {
         flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-
-        p {
-          color: $text-muted;
-          font-size: 12px;
-
-          &:last-child {
-            color: $text-muted;
-            font-size: 10px;
-          }
-        }
+        text-align: center;
+        font-size: 12px;
+        color: $text-primary;
+        word-break: break-all;
+        padding: 0 4px;
       }
 
-      .income-list-item-money {
-        flex-shrink: 0;
-        width: 80px;
-        text-align: right;
+      .reward {
         color: $brand-gold;
-        font-size: 14px;
         font-weight: 500;
       }
     }
